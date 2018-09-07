@@ -1,0 +1,553 @@
+{
+  "contractName": "Root",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_reputation",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipRenounced",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b506040516020806104a683398101806040528101908080519060200190929190505050336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050610423806100836000396000f300608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806354fd4d5014610067578063715018a61461009a5780638da5cb5b146100b1578063f2fde38b14610108575b600080fd5b34801561007357600080fd5b5061007c61014b565b60405180826000191660001916815260200191505060405180910390f35b3480156100a657600080fd5b506100af61016f565b005b3480156100bd57600080fd5b506100c6610271565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561011457600080fd5b50610149600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610296565b005b7f312e302e3000000000000000000000000000000000000000000000000000000081565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101ca57600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482060405160405180910390a260008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156102f157600080fd5b6102fa816102fd565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561033957600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505600a165627a7a72305820bfba566b8c47cd593ef34f80ea7315087a19817d7f7aa1da93146a1ad09c0f6b0029",
+  "deployedBytecode": "0x608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806354fd4d5014610067578063715018a61461009a5780638da5cb5b146100b1578063f2fde38b14610108575b600080fd5b34801561007357600080fd5b5061007c61014b565b60405180826000191660001916815260200191505060405180910390f35b3480156100a657600080fd5b506100af61016f565b005b3480156100bd57600080fd5b506100c6610271565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561011457600080fd5b50610149600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610296565b005b7f312e302e3000000000000000000000000000000000000000000000000000000081565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156101ca57600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482060405160405180910390a260008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156102f157600080fd5b6102fa816102fd565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561033957600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505600a165627a7a72305820bfba566b8c47cd593ef34f80ea7315087a19817d7f7aa1da93146a1ad09c0f6b0029",
+  "sourceMap": "316:995:1:-;;;910:65;8:9:-1;5:2;;;30:1;27;20:12;5:2;910:65:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;575:10:5;567:5;;:18;;;;;;;;;;;;;;;;;;910:65:1;316:995;;;;;;",
+  "deployedSourceMap": "316:995:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;536:41;;8:9:-1;5:2;;;30:1;27;20:12;5:2;536:41:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1001:111:5;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1001:111:5;;;;;;238:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;238:20:5;;;;;;;;;;;;;;;;;;;;;;;;;;;1274:103;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1274:103:5;;;;;;;;;;;;;;;;;;;;;;;;;;;;536:41:1;;;:::o;1001:111:5:-;719:5;;;;;;;;;;;705:19;;:10;:19;;;697:28;;;;;;;;1077:5;;;;;;;;;;;1058:25;;;;;;;;;;;;1105:1;1089:5;;:18;;;;;;;;;;;;;;;;;;1001:111::o;238:20::-;;;;;;;;;;;;;:::o;1274:103::-;719:5;;;;;;;;;;;705:19;;:10;:19;;;697:28;;;;;;;;1343:29;1362:9;1343:18;:29::i;:::-;1274:103;:::o;1512:171::-;1603:1;1582:23;;:9;:23;;;;1574:32;;;;;;;;1645:9;1617:38;;1638:5;;;;;;;;;;;1617:38;;;;;;;;;;;;1669:9;1661:5;;:17;;;;;;;;;;;;;;;;;;1512:171;:::o",
+  "source": "pragma solidity ^0.4.24;\n\n\nimport \"openzeppelin-solidity/contracts/ownership/Ownable.sol\";\nimport \"./lifecycle/OnlyOnce.sol\";\nimport \"./reputation/IReputation.sol\";\n\n/**\n * @title Pandora Smart Contract\n * @author \"Kostiantyn Smyrnov\" <kostysh@gmail.com>\n *\n * Root contract implementing the core functionality\n */\n\ncontract Root is Ownable, OnlyOnce {\n\n    /*******************************************************************************************************************\n     * ## Storage\n     */\n\n    /// ### Public variables\n\n    bytes32 public constant version = \"1.0.0\";\n\n\n    /*******************************************************************************************************************\n     * ## Events\n     */\n\n\n    /*******************************************************************************************************************\n     * ## Constructor \n     */\n\n    /// ### Constructor\n    constructor(\n        IReputation _reputation\n    ) public \n    {}\n\n    /*******************************************************************************************************************\n     * ## Modifiers\n     */\n\n\n    /*******************************************************************************************************************\n     * ## Functions\n     */\n\n    /// ### Public and external\n}\n",
+  "sourcePath": "/home/kostysh/dev/1329token/contracts/Root.sol",
+  "ast": {
+    "absolutePath": "/home/kostysh/dev/1329token/contracts/Root.sol",
+    "exportedSymbols": {
+      "Root": [
+        75
+      ]
+    },
+    "id": 76,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
+        "file": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
+        "id": 59,
+        "nodeType": "ImportDirective",
+        "scope": 76,
+        "sourceUnit": 300,
+        "src": "27:63:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/kostysh/dev/1329token/contracts/lifecycle/OnlyOnce.sol",
+        "file": "./lifecycle/OnlyOnce.sol",
+        "id": 60,
+        "nodeType": "ImportDirective",
+        "scope": 76,
+        "sourceUnit": 107,
+        "src": "91:34:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/kostysh/dev/1329token/contracts/reputation/IReputation.sol",
+        "file": "./reputation/IReputation.sol",
+        "id": 61,
+        "nodeType": "ImportDirective",
+        "scope": 76,
+        "sourceUnit": 208,
+        "src": "126:38:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 62,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 299,
+              "src": "333:7:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$299",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 63,
+            "nodeType": "InheritanceSpecifier",
+            "src": "333:7:1"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 64,
+              "name": "OnlyOnce",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 106,
+              "src": "342:8:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OnlyOnce_$106",
+                "typeString": "contract OnlyOnce"
+              }
+            },
+            "id": 65,
+            "nodeType": "InheritanceSpecifier",
+            "src": "342:8:1"
+          }
+        ],
+        "contractDependencies": [
+          106,
+          299
+        ],
+        "contractKind": "contract",
+        "documentation": "@title Pandora Smart Contract\n@author \"Kostiantyn Smyrnov\" <kostysh@gmail.com>\n * Root contract implementing the core functionality",
+        "fullyImplemented": true,
+        "id": 75,
+        "linearizedBaseContracts": [
+          75,
+          106,
+          299
+        ],
+        "name": "Root",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 68,
+            "name": "version",
+            "nodeType": "VariableDeclaration",
+            "scope": 75,
+            "src": "536:41:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 66,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "536:7:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "312e302e30",
+              "id": 67,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "570:7:1",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_06c015bd22b4c69690933c1058878ebdfef31f9aaae40bbe86d8a09fe1b2972c",
+                "typeString": "literal_string \"1.0.0\""
+              },
+              "value": "1.0.0"
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 73,
+              "nodeType": "Block",
+              "src": "973:2:1",
+              "statements": []
+            },
+            "documentation": "### Constructor",
+            "id": 74,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 71,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 70,
+                  "name": "_reputation",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 74,
+                  "src": "931:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IReputation_$207",
+                    "typeString": "contract IReputation"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 69,
+                    "name": "IReputation",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 207,
+                    "src": "931:11:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IReputation_$207",
+                      "typeString": "contract IReputation"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "921:39:1"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 72,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "973:0:1"
+            },
+            "scope": 75,
+            "src": "910:65:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 76,
+        "src": "316:995:1"
+      }
+    ],
+    "src": "0:1312:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/kostysh/dev/1329token/contracts/Root.sol",
+    "exportedSymbols": {
+      "Root": [
+        75
+      ]
+    },
+    "id": 76,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 58,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "absolutePath": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
+        "file": "openzeppelin-solidity/contracts/ownership/Ownable.sol",
+        "id": 59,
+        "nodeType": "ImportDirective",
+        "scope": 76,
+        "sourceUnit": 300,
+        "src": "27:63:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/kostysh/dev/1329token/contracts/lifecycle/OnlyOnce.sol",
+        "file": "./lifecycle/OnlyOnce.sol",
+        "id": 60,
+        "nodeType": "ImportDirective",
+        "scope": 76,
+        "sourceUnit": 107,
+        "src": "91:34:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/home/kostysh/dev/1329token/contracts/reputation/IReputation.sol",
+        "file": "./reputation/IReputation.sol",
+        "id": 61,
+        "nodeType": "ImportDirective",
+        "scope": 76,
+        "sourceUnit": 208,
+        "src": "126:38:1",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 62,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 299,
+              "src": "333:7:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$299",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 63,
+            "nodeType": "InheritanceSpecifier",
+            "src": "333:7:1"
+          },
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 64,
+              "name": "OnlyOnce",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 106,
+              "src": "342:8:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_OnlyOnce_$106",
+                "typeString": "contract OnlyOnce"
+              }
+            },
+            "id": 65,
+            "nodeType": "InheritanceSpecifier",
+            "src": "342:8:1"
+          }
+        ],
+        "contractDependencies": [
+          106,
+          299
+        ],
+        "contractKind": "contract",
+        "documentation": "@title Pandora Smart Contract\n@author \"Kostiantyn Smyrnov\" <kostysh@gmail.com>\n * Root contract implementing the core functionality",
+        "fullyImplemented": true,
+        "id": 75,
+        "linearizedBaseContracts": [
+          75,
+          106,
+          299
+        ],
+        "name": "Root",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 68,
+            "name": "version",
+            "nodeType": "VariableDeclaration",
+            "scope": 75,
+            "src": "536:41:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 66,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "536:7:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "312e302e30",
+              "id": 67,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "570:7:1",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_06c015bd22b4c69690933c1058878ebdfef31f9aaae40bbe86d8a09fe1b2972c",
+                "typeString": "literal_string \"1.0.0\""
+              },
+              "value": "1.0.0"
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 73,
+              "nodeType": "Block",
+              "src": "973:2:1",
+              "statements": []
+            },
+            "documentation": "### Constructor",
+            "id": 74,
+            "implemented": true,
+            "isConstructor": true,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 71,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 70,
+                  "name": "_reputation",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 74,
+                  "src": "931:23:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IReputation_$207",
+                    "typeString": "contract IReputation"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 69,
+                    "name": "IReputation",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 207,
+                    "src": "931:11:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IReputation_$207",
+                      "typeString": "contract IReputation"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "921:39:1"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 72,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "973:0:1"
+            },
+            "scope": 75,
+            "src": "910:65:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 76,
+        "src": "316:995:1"
+      }
+    ],
+    "src": "0:1312:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-09-07T23:10:29.161Z"
+}
