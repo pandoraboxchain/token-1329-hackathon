@@ -6,18 +6,12 @@ const assertRevert = require('./helpers/assertRevert')
 contract('Reputation', accounts => {
 
     let reputation;
-<<<<<<< HEAD
     let reputationProxy;
-    let masterAuthAccount = accounts[0];
-    let owner1 = accounts[1];
-    let owner2 = accounts[2];
-=======
     let authAccount1 = accounts[0];
     let authAccount2 = accounts[1];
     let authAccount3 = accounts[2]
     let owner1 = accounts[3];
     let owner2 = accounts[4];
->>>>>>> d8115a66cbf17be4f8f5ed09349d982afd219811
 
     before('setup', async () => {
         reputation = await Reputation.new();
@@ -109,7 +103,7 @@ contract('Reputation', accounts => {
 
     it('#grantAddressAuth should only be called by the origin owner', async () => {
 
-        assert(RevertreputationProxy.testGrantAddressAuth(reputation.address, masterAuthAccount, 1000, {from: owner1}));
+        assertRevert(reputationProxy.testGrantAddressAuth(reputation.address, authAccount1, 1000, {from: owner1}));
     });
 
     //---------------------------------------------------------
