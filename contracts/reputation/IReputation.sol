@@ -1,9 +1,7 @@
 pragma solidity ^0.4.24;
 
 
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
-
-contract IReputation is Ownable {
+contract IReputation {
     /// ERC20-like properties providing general information 
     /// about token name and symbol
     function name() public view returns (string);
@@ -12,7 +10,7 @@ contract IReputation is Ownable {
     /// ERC777-like granularity
     function granularity() public view returns (uint256);
 
-    /// Reputation may be limited or onlimited by the supply. These functions
+    /// Reputation may be limited or unlimited by the supply. These functions
     /// provide information whether the supply is limited and, if not, the
     /// `totalLimit()` and `currentSupply()` will be returning the maximum amount
     /// of the tokens that can be produced and current token issuance
