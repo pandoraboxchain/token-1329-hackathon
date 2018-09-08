@@ -21,9 +21,9 @@ fi
 
 start_ganache() {
   if [ "$SOLIDITY_COVERAGE" = true ]; then
-    npx testrpc-sc --gasLimit 0xfffffffffff --port="$ganache_port" --defaultBalanceEther=1000000 --accounts=10 > /dev/null &
+    npx testrpc-sc --gasLimit 0xfffffffffff --port="$ganache_port" --defaultBalanceEther=1000000000 --accounts=10 > /dev/null &
   else
-    npx ganache-cli --gasLimit 0xfffffffffff --port="$ganache_port" --defaultBalanceEther=1000000 --accounts=10 > /dev/null &
+    npx ganache-cli --gasLimit 0xfffffffffff --port="$ganache_port" --defaultBalanceEther=1000000000 --accounts=10 > /dev/null &
   fi    
 
   ganache_pid=$!
