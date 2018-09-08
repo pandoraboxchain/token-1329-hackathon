@@ -21,8 +21,8 @@ Quote from EIP:
 
 ## Testnet links
 
-- *Link to Reputation*
-- *Link to Reputation Issuable*
+- [Reputation Issuable abi](./abi/ReputationIssuable.json)
+- *Link to [Reputation Issuable contract](https://rinkeby.etherscan.io/address/0xcceba486643d71dcd1a0d3bc9fc95a86ec2168dd)*
 
 ## Instalation
 
