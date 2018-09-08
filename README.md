@@ -19,6 +19,10 @@ Quote from EIP:
 - [Reputation](test/reputation.js)
 - [ReputationIssuable](test/reputation.issuable.js)
 
+---
+
+- [Coverage][coverage.md]
+
 ## Testnet links
 
 - [Reputation Issuable abi](./abi/ReputationIssuable.json)
