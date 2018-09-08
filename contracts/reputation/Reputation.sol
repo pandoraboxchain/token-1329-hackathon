@@ -8,9 +8,9 @@ contract Reputation is IReputation {
 
     using SafeMath for uint256;
 
-    string public constant _name = "ERC1329";
-    string public constant _symbol = "REP";
-    uint256 public constant _granularity = 1;
+    string internal constant _name = "ERC1329";
+    string internal constant _symbol = "REP";
+    uint256 internal constant _granularity = 1;
 
     // key : owner , value : balance
     mapping(address => uint256) internal _balances;
