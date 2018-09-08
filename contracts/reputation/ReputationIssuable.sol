@@ -29,11 +29,11 @@ contract ReputationIssuable is Reputation {
             if (value > balance) {
                 _balances[owner] -= value;
             } else {
-                // TODO: Banned
                 delete _balances[owner];
                 delete _authorized_addresses[owner];
                 delete _authorized_duration[auth];
                 delete _owner_addresses[auth];
+                _banneds[owner] = true;
             }
             emit Burned(owner, value);
         } else {

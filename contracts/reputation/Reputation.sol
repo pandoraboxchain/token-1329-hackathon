@@ -17,6 +17,8 @@ contract Reputation is IReputation {
     mapping(address => address) internal _authorized_addresses;
     // key : auth  , value : owner
     mapping(address => address) internal _owner_addresses;
+    // key : owner , value : banned 
+    mapping(address => bool) internal _banneds;
 
     uint256 internal _totalLimit;
     uint256 internal _currentSupply;
