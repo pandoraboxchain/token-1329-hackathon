@@ -12,6 +12,7 @@ contract('ReputationIssuable', accounts => {
     before('setup', async () => {
         reputation = await ReputationIssuable.new();
         await reputation.grantAddressAuth(authAccount1, 1000, {from: owner1});
+        await reputation.grantAddressAuth(authAccount2, 1000, {from: owner2});
     });
 
     it('#issueByAuth shoul increment reputation', async () => {
@@ -26,9 +27,13 @@ contract('ReputationIssuable', accounts => {
         assert.equal(issued.args.amountProduced, 100);
     });
 
-    // it('#', async () => {
-        
-    // });
+    it('#issueByAuth should handle currentSupply for all owners', async () => {
+        const result = await reputation.issueByAuth(authAccount2, 100, {from: owner2});        
+        const balance = await reputation.balanceOf(owner2);
+        assert.equal(balance, 100);
+        const currentSupply = await reputation.currentSupply();
+        assert.equal(currentSupply, 200);
+    });
 
     // it('#', async () => {
         
