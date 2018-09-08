@@ -4,7 +4,7 @@ require('@babel/register');
 require('@babel/polyfill');
 
 const PrivateKeyProvider = require('truffle-privatekey-provider');
-const privateKey = reguire('./key').key;
+const privateKey = require('./key').key;
 
 module.exports = {
     networks: {
