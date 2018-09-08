@@ -9,12 +9,21 @@ contract Reputation is IReputation {
     string public constant symbol = "REP";
     unit256 public constant granularity = 1;
 
+    mapping(address => unit256) internal _balances;
+    mapping(address => unit256) internal _authorized_addresses;
+    mapping(address => unit256) internal _authorized_duration;
+    mapping(address => unit256) internal _owner_addresses;
+
+    unit256 internal _totalSupply;
+    unit256 internal _currentSupply;
+
 
     // ------------------------------------------------------------------------
     // Constructor
     // ------------------------------------------------------------------------
     constructor() public {
-
+        // no tokens minted on deploy
+        _currentSupply = 0;
     }
 
 
@@ -45,13 +54,29 @@ contract Reputation is IReputation {
         return 2**256 - 1; /// max value for unit256
     }
     function balanceOf(address owner) public view returns (unit256) {
-
+        return _balances[owner]; /// return requested owner balance
     }
 
     /// Authorizes address to interact with the contract on behalf
     /// of the balance owner for a some duration (amount of blocks)
     function authAddress(address owner) public view returns (address) {
-
+        return _authorized_addresses[owner];
     }
 
+    /// Authorizes address to interact with the contract on behalf
+    /// of the balance owner for a some duration (amount of blocks)
+    function grantAddressAuth(address auth, uint duration) public returns (address prevAddress){
+        require(tx.origin == msg.sender);
+        require(auth != address(0));
+        require(_owner_addresses[auth] == address(0));
+
+        _authorized_addresses[tx.origin] = auth;
+        _authorized_duration[auth] = duration;
+        _owner_addresses[auth] = tx.origin;
+    }
+
+    /// Extends authorized duration for the registered authorized address
+    function extendAuthDuration(uint forDuration) public {
+
+    }
 }
