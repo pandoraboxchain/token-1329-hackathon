@@ -10,9 +10,9 @@ contract Reputation is IReputation {
     unit256 public constant granularity = 1;
 
     mapping(address => unit256) internal _balances;
-    mapping(address => unit256) internal _authorized_addresses;
+    mapping(address => address) internal _authorized_addresses;
     mapping(address => unit256) internal _authorized_duration;
-    mapping(address => unit256) internal _owner_addresses;
+    mapping(address => address) internal _owner_addresses;
 
     unit256 internal _totalSupply;
     unit256 internal _currentSupply;
@@ -70,13 +70,17 @@ contract Reputation is IReputation {
         require(auth != address(0));
         require(_owner_addresses[auth] == address(0));
 
+        address prev = _authorized_addresses[tx.origin]
+
         _authorized_addresses[tx.origin] = auth;
-        _authorized_duration[auth] = duration;
+        _authorized_duration[auth] = duration + block.number;
         _owner_addresses[auth] = tx.origin;
+
+        return prev;
     }
 
     /// Extends authorized duration for the registered authorized address
     function extendAuthDuration(uint forDuration) public {
-
+        
     }
 }
