@@ -1,14 +1,17 @@
 const Reputation = artifacts.require('Reputation');
+const ReputationProxy = artifacts.require('ReputationProxy');
 
 contract('Reputation', accounts => {
 
     let reputation;
+    let reputationProxy;
     let masterAuthAccount = accounts[0];
     let owner1 = accounts[1];
     let owner2 = accounts[2];
 
     before('setup', async () => {
         reputation = await Reputation.new();
+        reputationProxy = await ReputationProxy.new();
     });
 
     it('#name should return name of token', async () => {
@@ -63,5 +66,10 @@ contract('Reputation', accounts => {
         assert.equal(authGranted.args.owner, owner1);
         assert.equal(authGranted.args.auth, masterAuthAccount);
         assert.equal(authGranted.args.duration.toNumber(), 1000);
+    });
+
+    it('#grantAddressAuth should only be called by the origin owner', async () => {
+
+        const result = await reputationProxy.testGrantAddressAuth(reputation.address, masterAuthAccount, 1000, {from: owner1});
     });
 });
