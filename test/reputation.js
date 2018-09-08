@@ -1,10 +1,12 @@
 const Reputation = artifacts.require('Reputation');
+const ReputationProxy = artifacts.require('ReputationProxy');
 
 const assertRevert = require('./helpers/assertRevert')
 
 contract('Reputation', accounts => {
 
     let reputation;
+    let reputationProxy;
     let authAccount1 = accounts[0];
     let authAccount2 = accounts[1];
     let authAccount3 = accounts[2]
@@ -13,6 +15,7 @@ contract('Reputation', accounts => {
 
     before('setup', async () => {
         reputation = await Reputation.new();
+        reputationProxy = await ReputationProxy.new();
     });
 
     it('#name should return name of token', async () => {
@@ -91,9 +94,11 @@ contract('Reputation', accounts => {
         assert.equal(authGranted.args.owner, owner1);
         assert.equal(authGranted.args.auth, authAccount2);
         assert.equal(authGranted.args.duration.toNumber(), 2000);
+    });
 
+    it('#grantAddressAuth should only be called by the origin owner', async () => {
 
-
+        assertRevert(reputationProxy.testGrantAddressAuth(reputation.address, authAccount1, 1000, {from: owner1}));
     });
 
     //---------------------------------------------------------
