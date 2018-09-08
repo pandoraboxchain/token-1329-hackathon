@@ -31,13 +31,13 @@ contract Reputation is IReputation {
     // ------------------------------------------------------------------------
     // Functions
     // ------------------------------------------------------------------------
-    function name() public view {
+    function name() public returns (string) {
         return name;
     }
-    function symbol() public view {
+    function symbol() public returns (string) {
         return symbol;
     }
-    function granularity() public view {
+    function granularity() public returns (uint256) {
         return granularity;
     }
 
