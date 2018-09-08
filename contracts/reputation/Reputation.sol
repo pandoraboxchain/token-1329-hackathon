@@ -93,4 +93,15 @@ contract Reputation is IReputation {
             _authorized_duration[auth] = _authorized_duration[auth] + forDuration;
         }
     }
+
+    function revokeAddressAuth() public{
+        require(tx.origin == msg.sender);
+        require(_authorized_addresses[tx.origin] != address(0));
+
+        address auth = _authorized_addresses[tx.origin];
+        delete _authorized_addresses[tx.origin];
+        delete _owner_addresses[auth];
+        delete _authorized_duration[auth];
+    }
+
 }
