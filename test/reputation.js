@@ -33,19 +33,19 @@ contract('Reputation', accounts => {
         assert.equal(granularity, 1);
     });
 
-    it('#check limit for unlimited flag', async () => {
+    it('#hasLimit limit for unlimited flag', async () => {
 
         const hasLimit = await reputation.hasLimit();
         assert.equal(hasLimit, false);
     });
 
-    it('#getting total limit', async () => {
+    it('#totalLimit total limit', async () => {
 
         const totalLimit = await reputation.totalLimit();
         assert.equal(totalLimit.toNumber(), Math.pow(2, 256)-1);
     });
 
-    it('#getting current supply', async () => {
+    it('#currentSupply current supply', async () => {
 
         const currentSupply = await reputation.currentSupply();
         assert.equal(currentSupply.toNumber(), 0);
@@ -54,16 +54,11 @@ contract('Reputation', accounts => {
     //---------------------------------------------------------
     // tests for balanceOf
     //---------------------------------------------------------
-    it('#test balance of not existent owner', async () => {
+    it('#balanceOf balance of not existent owner', async () => {
 
         const currentBalance = await reputation.balanceOf(0x0);
         assert.equal(currentBalance.toNumber(), 0);
     });
-
-    //---------------------------------------------------------
-    // tests for authAddress
-    //---------------------------------------------------------
-
 
     //---------------------------------------------------------
     // tests for grantAddressAuth
