@@ -58,9 +58,10 @@ contract('Reputation', accounts => {
 
     it('#grantAddressAuth should grant access to address', async () => {
 
-        const result = await reputation.grantAddressAuth(owner1.address, 1000, {from: owner1});
-        console.log(result)
+        const result = await reputation.grantAddressAuth(masterAuthAccount, 1000, {from: owner1});
         const authGranted = result.logs.filter(l => l.event === 'AuthGranted')[0];
-        console.log(authGranted)
+        assert.equal(authGranted.args.owner, owner1);
+        assert.equal(authGranted.args.auth, masterAuthAccount);
+        assert.equal(authGranted.args.duration.toNumber(), 1000);
     });
 });
