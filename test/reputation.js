@@ -100,6 +100,28 @@ contract('Reputation', accounts => {
         assert.equal(currentAuthAddress, authAccount2)
     });
 
+    it('#grantAddressAuth fix me', async () => {
+
+        const result = await reputation.grantAddressAuth(authAccount2, 2000, {from: owner1});
+        const authGranted = result.logs.filter(l => l.event === 'AuthGranted')[0];
+        assert.equal(authGranted.args.owner, owner1);
+        assert.equal(authGranted.args.auth, authAccount2);
+        assert.equal(authGranted.args.duration.toNumber(), 2000);
+
+        const call_result = await reputation.authAddress(owner1)
+        const currentAuthAddress = call_result[0]
+        assert.equal(currentAuthAddress, authAccount2)
+
+        // get back authAccount1
+        const result_revert = await reputation.grantAddressAuth(authAccount1, 2000, {from: owner1});
+        const authGranted_revert = result_revert.logs.filter(l => l.event === 'AuthGranted')[0];
+        assert.equal(authGranted_revert.args.owner, owner1);
+        assert.equal(authGranted_revert.args.auth, authAccount1);
+        assert.equal(authGranted_revert.args.duration.toNumber(), 2000);
+    });
+
+
+
     it('#grantAddressAuth should only be called by the origin owner', async () => {
 
         assertRevert(reputationProxy.testGrantAddressAuth(reputation.address, authAccount1, 1000, {from: owner1}));
@@ -108,7 +130,7 @@ contract('Reputation', accounts => {
     //---------------------------------------------------------
     // tests for extendAuthDuration
     //---------------------------------------------------------
-    it('#extendAuthDuration for authAccount1', async () => {
+    it('#extendAuthDuration for account', async () => {
 
         const result = await reputation.extendAuthDuration(1000, {from: owner1});
         const authGranted = result.logs.filter(l => l.event === 'AuthGranted')[0];
