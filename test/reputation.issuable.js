@@ -84,5 +84,4 @@ contract('ReputationIssuable', accounts => {
     });
 
 
-
 });

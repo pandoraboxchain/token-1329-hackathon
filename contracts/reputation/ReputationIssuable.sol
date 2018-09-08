@@ -38,7 +38,7 @@ contract ReputationIssuable is Reputation {
             } else {
                 uint256 burned = _balances[owner];
                 delete _balances[owner];
-                _currentSupply -= _currentSupply.sub(burned);
+                _currentSupply = _currentSupply.sub(burned);
                 delete _authorized_addresses[owner];
                 delete _authorized_duration[auth];
                 delete _owner_addresses[auth];
