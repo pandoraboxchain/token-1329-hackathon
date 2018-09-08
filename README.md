@@ -4,9 +4,7 @@
 
 Quote from EIP:
 
-```
-Reputation belonging to an identity is frequently used in designing repeated economic games and protect them from malicious actors. The main property of such reputation should be inalienability. This ERC proposes the standard in creating inalienable reputation tokens.
-```
+>Reputation belonging to an identity is frequently used in designing repeated economic games and protect them from malicious actors. The main property of such reputation should be inalienability. This ERC proposes the standard in creating inalienable reputation tokens.
 
 [https://github.com/ethereum/EIPs/issues/1329](https://github.com/ethereum/EIPs/issues/1329)
 
