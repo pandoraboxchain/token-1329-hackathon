@@ -15,6 +15,7 @@ contract ReputationIssuable is Reputation {
         uint256 duration = _authorized_duration[auth];
         if (duration >= block.number) {
             _balances[owner] += value;
+            _currentSupply += value;
             emit Issued(owner, value);
         } else {
             emit AuthExpired(owner, auth);
@@ -30,14 +31,18 @@ contract ReputationIssuable is Reputation {
             uint256 balance = _balances[owner];
             if (value > balance) {
                 _balances[owner] -= value;
+                _currentSupply -= value;
+                emit Burned(owner, value);
             } else {
+                uint256 burned = _balances[owner];
                 delete _balances[owner];
+                _currentSupply -= burned;
                 delete _authorized_addresses[owner];
                 delete _authorized_duration[auth];
                 delete _owner_addresses[auth];
                 _banneds[owner] = true;
+                emit Burned(owner, burned);
             }
-            emit Burned(owner, value);
         } else {
             emit AuthExpired(owner, auth);
         }
