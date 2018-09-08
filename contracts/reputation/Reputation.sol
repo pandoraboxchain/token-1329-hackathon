@@ -70,7 +70,7 @@ contract Reputation is IReputation {
         require(auth != address(0));
         require(_owner_addresses[auth] == address(0));
 
-        address prev = _authorized_addresses[tx.origin]
+        address prev = _authorized_addresses[tx.origin];
 
         _authorized_addresses[tx.origin] = auth;
         _authorized_duration[auth] = duration + block.number;
