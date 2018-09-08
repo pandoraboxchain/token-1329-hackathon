@@ -144,5 +144,15 @@ contract('Reputation', accounts => {
     //---------------------------------------------------------
     // tests for revokeAddressAuth
     //---------------------------------------------------------
+    it('#revokeAddressAuth should only be called by the origin owner', async () => {
 
+        assertRevert(reputationProxy.testRevokeAddressAuth(reputation.address, {from: owner1}));
+    });
+
+    it('#revokeAddressAuth should revoke origin address', async () => {
+
+        const result = await reputation.revokeAddressAuth({from: owner1});
+        const authRevoked = result.logs.filter(l => l.event === 'AuthRevoked')[0];
+        assert.equal(authRevoked.args.owner, owner1);
+    });
 });

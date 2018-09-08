@@ -9,4 +9,9 @@ contract ReputationProxy {
         Reputation rep = Reputation(repAddr);
         return rep.grantAddressAuth(auth, duration);
     }
+
+    function testRevokeAddressAuth(address repAddr) public {
+        Reputation rep = Reputation(repAddr);
+        return rep.revokeAddressAuth();
+    }
 }
