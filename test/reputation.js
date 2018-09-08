@@ -94,6 +94,10 @@ contract('Reputation', accounts => {
         assert.equal(authGranted.args.owner, owner1);
         assert.equal(authGranted.args.auth, authAccount2);
         assert.equal(authGranted.args.duration.toNumber(), 2000);
+
+        const call_result = await reputation.authAddress(owner1)
+        const currentAuthAddress = call_result[0]
+        assert.equal(currentAuthAddress, authAccount2)
     });
 
     it('#grantAddressAuth should only be called by the origin owner', async () => {
