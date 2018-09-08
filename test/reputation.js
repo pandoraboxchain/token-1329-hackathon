@@ -106,11 +106,11 @@ contract('Reputation', accounts => {
     //---------------------------------------------------------
     it('#extendAuthDuration for authAccount1', async () => {
 
-        const result = await reputation.grantAddressAuth(1000, {from: owner1});
+        const result = await reputation.extendAuthDuration(1000, {from: owner1});
         const authGranted = result.logs.filter(l => l.event === 'AuthGranted')[0];
         assert.equal(authGranted.args.owner, owner1);
         assert.equal(authGranted.args.auth, authAccount2);
-        assert.equal(authGranted.args.duration.toNumber(), 2000);
+        assert.equal(authGranted.args.duration.toNumber(), 1000);
 
     });
 
