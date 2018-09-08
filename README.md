@@ -21,7 +21,7 @@ Quote from EIP:
 
 ---
 
-- [Coverage][coverage.md]
+- [Coverage](coverage.md)
 
 ## Testnet links
 
