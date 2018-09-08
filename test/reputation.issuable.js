@@ -18,9 +18,7 @@ contract('ReputationIssuable', accounts => {
         await reputation.grantAddressAuth(authAccount2, 1000, {from: owner2});
     });
 
-    it('#issueByAuth negative by 0x0 address', async () => {
-        assertRevert(reputation.issueByAuth(0x0, 100, {from: owner2}));
-    });
+
 
     it('#issueByAuth should increment reputation', async () => {
         const balanceBefore = await reputation.balanceOf(owner1);
@@ -75,6 +73,14 @@ contract('ReputationIssuable', accounts => {
         assert.equal(burned.args.owner, owner4);
         assert.equal(burned.args.amountBurned, 50);
 
+    });
+
+    it('#issueByAuth negative by 0x0 address', async () => {
+        assertRevert(reputation.issueByAuth(0x0, 100, {from: owner2}));
+    });
+
+    it('#burnedByAuth negative by 0x0 address', async () => {
+        assertRevert(reputation.burnedByAuth(0x0, 100, {from: owner2}));
     });
 
 });

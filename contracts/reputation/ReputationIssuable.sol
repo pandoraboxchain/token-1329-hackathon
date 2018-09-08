@@ -22,7 +22,7 @@ contract ReputationIssuable is Reputation {
         }
     }
 
-    function  burnedByAuth(address auth, uint256 value) public {
+    function burnedByAuth(address auth, uint256 value) public {
         require(_owner_addresses[auth] != address(0));
 
         address owner = _owner_addresses[auth];
