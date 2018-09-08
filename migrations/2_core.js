@@ -1,22 +1,11 @@
 'use strict';
 
-const Root = artifacts.require('Root');
-const Reputation = artifacts.require('Reputation');
+const ReputationIssuable = artifacts.require('ReputationIssuable');
 
 module.exports = (deployer, network, accounts) => {
-    let reputation, rootContract;
-
-    return deployer.deploy(Reputation)
-        .then(_ => Reputation.deployed())
-        .then(instance => {
-            reputation = instance
-            return deployer.deploy(Root)
-        })
-        .then(_ => Root.deployed())
-        .then(instance => {
-            rootContract = instance;
-            return Promise.resolve();
-        })
+    
+    return deployer.deploy(ReputationIssuable)
+        .then(_ => ReputationIssuable.deployed())
         .catch(console.error);
 
 };

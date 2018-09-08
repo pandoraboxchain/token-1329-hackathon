@@ -1,6 +1,8 @@
 pragma solidity ^0.4.24;
 
 
+
+
 contract IReputation {
     /// ERC20-like properties providing general information 
     /// about token name and symbol

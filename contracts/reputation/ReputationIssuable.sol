@@ -1,11 +1,12 @@
 pragma solidity ^0.4.24;
 
+import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "./Reputation.sol";
 
 
-contract ReputationIssuable is Reputation {
+contract ReputationIssuable is Reputation, Ownable {
 
-    function issueByAuth(address auth, uint256 value) public {
+    function issueByAuth(address auth, uint256 value) public onlyOwner() {
         require(_owner_addresses[auth] != address(0));
 
         address owner = _owner_addresses[auth];
@@ -22,7 +23,7 @@ contract ReputationIssuable is Reputation {
         }
     }
 
-    function  burnedByAuth(address auth, uint256 value) public {
+    function  burnedByAuth(address auth, uint256 value) public onlyOwner() {
         require(_owner_addresses[auth] != address(0));
 
         address owner = _owner_addresses[auth];
