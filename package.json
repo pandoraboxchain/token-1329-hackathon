@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "npx solium -d contracts/",
     "compile": "npx truffle compile",
+    "deploy": "npx truffle migrate --network rinkeby",
     "test": "./test/test.sh",
     "test:coverage": "SOLIDITY_COVERAGE=true ./test/test.sh"
   },
@@ -39,7 +40,8 @@
     "solidity-coverage": "^0.5.11",
     "solium": "^1.1.8",
     "solium-plugin-zeppelin": "0.0.2",
-    "truffle": "^4.1.14"
+    "truffle": "^4.1.14",
+    "truffle-privatekey-provider": "^0.1.0"
   },
   "license": "MIT"
 }

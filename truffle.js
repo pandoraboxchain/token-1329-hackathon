@@ -3,6 +3,9 @@
 require('@babel/register');
 require('@babel/polyfill');
 
+const PrivateKeyProvider = require('truffle-privatekey-provider');
+const privateKey = reguire('./key').key;
+
 module.exports = {
     networks: {
         ganache: {
@@ -16,6 +19,11 @@ module.exports = {
             port: 8555,
             network_id: '*',
             gas: 0xfffffffffff
+        },
+        rinkeby: {
+            provider: _ => new PrivateKeyProvider(privateKey, `http://rinkeby.pandora.network`),
+            port: 8545,
+            network_id: '*'
         }
     },
     mocha: {
