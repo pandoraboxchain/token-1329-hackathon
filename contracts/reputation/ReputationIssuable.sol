@@ -15,7 +15,7 @@ contract ReputationIssuable is Reputation {
             _balances[owner] += value;
             emit Issued(owner, value);
         } else {
-            // TODO expire
+            emit AuthExpired(owner, auth);
         }
     }
 
