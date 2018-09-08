@@ -1,9 +1,12 @@
 pragma solidity ^0.4.24;
 
 import "./IReputation.sol";
+import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
 
 contract Reputation is IReputation {
+
+    using SafeMath for uint256;
 
     string public constant _name = "ERC1329";
     string public constant _symbol = "REP";
@@ -83,7 +86,7 @@ contract Reputation is IReputation {
         delete _owner_addresses[prev];
 
         _authorized_addresses[tx.origin] = auth;
-        _authorized_duration[auth] = duration + block.number;
+        _authorized_duration[auth] = duration.add(block.number);
         _owner_addresses[auth] = tx.origin;
 
         emit AuthGranted(msg.sender, auth, duration);
@@ -99,9 +102,9 @@ contract Reputation is IReputation {
 
         uint256 old_duration = _authorized_duration[auth];
         if(old_duration<block.number){
-            _authorized_duration[auth] = block.number + forDuration;
+            _authorized_duration[auth] = block.number.add(forDuration);
         } else {
-            _authorized_duration[auth] = _authorized_duration[auth] + forDuration;
+            _authorized_duration[auth] = _authorized_duration[auth].add(forDuration);
         }
 
         emit AuthGranted(tx.origin, auth, forDuration);
