@@ -10,7 +10,7 @@ module.exports = (deployer, network, accounts) => {
         .then(_ => Reputation.deployed())
         .then(instance => {
             reputation = instance
-            return deployer.deploy(Root, reputation.address)
+            return deployer.deploy(Root)
         })
         .then(_ => Root.deployed())
         .then(instance => {
