@@ -3,6 +3,9 @@ const Reputation = artifacts.require('Reputation');
 contract('Reputation', accounts => {
 
     let reputation;
+    let masterAuthAccount = accounts[0];
+    let owner1 = accounts[1];
+    let owner2 = accounts[2];
 
     before('setup', async () => {
         reputation = await Reputation.new();
@@ -53,5 +56,11 @@ contract('Reputation', accounts => {
         assert.equal(currentBalance.toNumber(), 0);
     });
 
+    it('#grantAddressAuth should grant access to address', async () => {
 
+        const result = await reputation.grantAddressAuth(owner1.address, 1000, {from: owner1});
+        console.log(result)
+        const authGranted = result.logs.filter(l => l.event === 'AuthGranted')[0];
+        console.log(authGranted)
+    });
 });
