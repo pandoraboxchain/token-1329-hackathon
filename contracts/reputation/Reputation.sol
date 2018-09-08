@@ -14,7 +14,7 @@ contract Reputation is IReputation {
     mapping(address => uint256) internal _authorized_duration;
     mapping(address => address) internal _owner_addresses;
 
-    uint256 internal _totalSupply;
+    uint256 internal _totalLimit;
     uint256 internal _currentSupply;
 
 
@@ -24,6 +24,7 @@ contract Reputation is IReputation {
     constructor() public {
         // no tokens minted on deploy
         _currentSupply = 0;
+        _totalLimit = 2**256 - 1;
     }
 
 
@@ -48,10 +49,10 @@ contract Reputation is IReputation {
         return false;
     }
     function totalLimit() public view returns (uint256) {
-        return 2**256 - 1; /// max value for uint256
+        return _totalLimit; /// max value for uint256
     }
     function currentSupply() public view returns (uint256) {
-        return 2**256 - 1; /// max value for uint256
+        return _currentSupply; /// max value for uint256
     }
     function balanceOf(address owner) public view returns (uint256) {
         return _balances[owner]; /// return requested owner balance
