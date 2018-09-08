@@ -40,6 +40,14 @@ contract('ReputationIssuable', accounts => {
         assert.equal(currentSupply, 200);
     });
 
+    it('#issueByAuth negative by 0x0 address', async () => {
+        assertRevert(reputation.issueByAuth(0x0, 100, {from: owner2}));
+    });
+
+    it('#burnedByAuth negative by 0x0 address', async () => {
+        assertRevert(reputation.burnedByAuth(0x0, 100, {from: owner2}));
+    });
+
     it('#burnedByAuth shoul decrement reputation', async () => {
         await reputation.grantAddressAuth(authAccount3, 1000, {from: owner3});
         await reputation.issueByAuth(authAccount3, 100, {from: owner3});
@@ -75,12 +83,6 @@ contract('ReputationIssuable', accounts => {
 
     });
 
-    it('#issueByAuth negative by 0x0 address', async () => {
-        assertRevert(reputation.issueByAuth(0x0, 100, {from: owner2}));
-    });
 
-    it('#burnedByAuth negative by 0x0 address', async () => {
-        assertRevert(reputation.burnedByAuth(0x0, 100, {from: owner2}));
-    });
 
 });
