@@ -13,6 +13,7 @@ contract ReputationIssuable is Reputation {
         if (duration >= block.number) {
             // TODO: Banned
             _balances[owner] += value;
+            emit Issued(owner, value);
         }
     }
 
