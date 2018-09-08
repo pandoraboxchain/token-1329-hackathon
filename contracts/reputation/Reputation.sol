@@ -81,6 +81,16 @@ contract Reputation is IReputation {
 
     /// Extends authorized duration for the registered authorized address
     function extendAuthDuration(uint forDuration) public {
-        
+        require(tx.origin == msg.sender);
+        require(_authorized_addresses[tx.origin] != address(0));
+
+        address auth = _authorized_addresses[tx.origin];
+
+        unit256 old_duration = _authorized_duration[auth];
+        if(old_duration<block.number){
+            _authorized_duration[auth] = block.number + forDuration;
+        } else {
+            _authorized_duration[auth] = _authorized_duration[auth] + forDuration;
+        }
     }
 }
