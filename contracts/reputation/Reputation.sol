@@ -61,7 +61,8 @@ contract Reputation is IReputation {
     /// Authorizes address to interact with the contract on behalf
     /// of the balance owner for a some duration (amount of blocks)
     function authAddress(address owner) public view returns (address, uint256) {
-        return (_authorized_addresses[owner], 0);
+        address auth = _authorized_addresses[owner];
+        return (auth, _authorized_duration[auth]);
     }
 
     /// Authorizes address to interact with the contract on behalf

@@ -8,14 +8,14 @@
       "type": "constructor"
     }
   ],
-  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a723058204707b8b28f17141bf0d1884bd51cbbde8d8d685358af6900954507cec3e8330b0029",
-  "deployedBytecode": "0x6080604052600080fd00a165627a7a723058204707b8b28f17141bf0d1884bd51cbbde8d8d685358af6900954507cec3e8330b0029",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3006080604052600080fd00a165627a7a72305820bc765eaa73ab37e65fd4b30d72b5b85e40384b948dcdc2a97a4d6a7cc3b3e5360029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820bc765eaa73ab37e65fd4b30d72b5b85e40384b948dcdc2a97a4d6a7cc3b3e5360029",
   "sourceMap": "27:563:2:-;;;52:24;8:9:-1;5:2;;;30:1;27;20:12;5:2;52:24:2;27:563;;;;;;",
   "deployedSourceMap": "27:563:2:-;;;;;",
   "source": "pragma solidity ^0.4.23;\n\n\ncontract OnlyOnce {\n\n    constructor() public { }\n\n    /// @dev Internal private mapping storing flags indicating which of `onlyOnce` functions was already called.\n    mapping(string => bool) private onceFlags;\n    /// @dev Ensures that function with the modifier can be called only once during the whole contract lifecycle\n    modifier onlyOnce(\n        string _id /// Some id used to uniquely identify the caller function (usually the function name as a string)\n    ) {\n        require(onceFlags[_id] == false);\n        _;\n        onceFlags[_id] = true;\n    }\n}\n",
-  "sourcePath": "/Users/Strider/Work/PANDORA/PANDORA_Project/token-1329-hackathon/contracts/lifecycle/OnlyOnce.sol",
+  "sourcePath": "/Users/andrey/code/token-1329-hackathon/contracts/lifecycle/OnlyOnce.sol",
   "ast": {
-    "absolutePath": "/Users/Strider/Work/PANDORA/PANDORA_Project/token-1329-hackathon/contracts/lifecycle/OnlyOnce.sol",
+    "absolutePath": "/Users/andrey/code/token-1329-hackathon/contracts/lifecycle/OnlyOnce.sol",
     "exportedSymbols": {
       "OnlyOnce": [
         104
@@ -387,7 +387,7 @@
     "src": "0:591:2"
   },
   "legacyAST": {
-    "absolutePath": "/Users/Strider/Work/PANDORA/PANDORA_Project/token-1329-hackathon/contracts/lifecycle/OnlyOnce.sol",
+    "absolutePath": "/Users/andrey/code/token-1329-hackathon/contracts/lifecycle/OnlyOnce.sol",
     "exportedSymbols": {
       "OnlyOnce": [
         104
@@ -764,5 +764,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-08T13:57:39.055Z"
+  "updatedAt": "2018-09-08T14:01:18.762Z"
 }
