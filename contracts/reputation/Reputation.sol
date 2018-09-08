@@ -7,15 +7,15 @@ contract Reputation is IReputation {
 
     string public constant name = "ERC1329";
     string public constant symbol = "REP";
-    unit256 public constant granularity = 1;
+    uint256 public constant granularity = 1;
 
-    mapping(address => unit256) internal _balances;
+    mapping(address => uint256) internal _balances;
     mapping(address => address) internal _authorized_addresses;
-    mapping(address => unit256) internal _authorized_duration;
+    mapping(address => uint256) internal _authorized_duration;
     mapping(address => address) internal _owner_addresses;
 
-    unit256 internal _totalSupply;
-    unit256 internal _currentSupply;
+    uint256 internal _totalSupply;
+    uint256 internal _currentSupply;
 
 
     // ------------------------------------------------------------------------
@@ -30,13 +30,13 @@ contract Reputation is IReputation {
     // ------------------------------------------------------------------------
     // Functions
     // ------------------------------------------------------------------------
-    function name() public {
+    function name() public view {
         return name;
     }
-    function symbol() public {
+    function symbol() public view {
         return symbol;
     }
-    function granularity() public {
+    function granularity() public view {
         return granularity;
     }
 
@@ -47,13 +47,13 @@ contract Reputation is IReputation {
     function hasLimit() public view returns (bool) {
         return false;
     }
-    function totalLimit() public view returns (unit256) {
-        return 2**256 - 1; /// max value for unit256
+    function totalLimit() public view returns (uint256) {
+        return 2**256 - 1; /// max value for uint256
     }
-    function currentSupply() public view returns (unit256) {
-        return 2**256 - 1; /// max value for unit256
+    function currentSupply() public view returns (uint256) {
+        return 2**256 - 1; /// max value for uint256
     }
-    function balanceOf(address owner) public view returns (unit256) {
+    function balanceOf(address owner) public view returns (uint256) {
         return _balances[owner]; /// return requested owner balance
     }
 
@@ -86,7 +86,7 @@ contract Reputation is IReputation {
 
         address auth = _authorized_addresses[tx.origin];
 
-        unit256 old_duration = _authorized_duration[auth];
+        uint256 old_duration = _authorized_duration[auth];
         if(old_duration<block.number){
             _authorized_duration[auth] = block.number + forDuration;
         } else {
