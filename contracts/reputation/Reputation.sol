@@ -76,6 +76,7 @@ contract Reputation is IReputation {
         _authorized_duration[auth] = duration + block.number;
         _owner_addresses[auth] = tx.origin;
 
+        emit AuthGranted(msg.sender, auth, duration);
         return prev;
     }
 
@@ -102,6 +103,8 @@ contract Reputation is IReputation {
         delete _authorized_addresses[tx.origin];
         delete _owner_addresses[auth];
         delete _authorized_duration[auth];
+
+        emit AuthRevoked(tx.origin, auth);
     }
 
 }
