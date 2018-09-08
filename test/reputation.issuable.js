@@ -28,6 +28,14 @@ contract('ReputationIssuable', accounts => {
         assert.equal(issued.args.amountProduced, 100);
     });
 
+    it('#issueByAuth should handle currentSupply for all owners', async () => {
+        const result = await reputation.issueByAuth(authAccount2, 100, {from: owner2});        
+        const balance = await reputation.balanceOf(owner2);
+        assert.equal(balance, 100);
+        const currentSupply = await reputation.currentSupply();
+        assert.equal(currentSupply, 200);
+    });
+
     it('#burnedByAuth shoul decrement reputation', async () => {
         await reputation.grantAddressAuth(authAccount3, 1000, {from: owner3});
         await reputation.issueByAuth(authAccount3, 100, {from: owner3});
@@ -44,20 +52,5 @@ contract('ReputationIssuable', accounts => {
         assert.equal(burned.args.owner, owner3);
         assert.equal(burned.args.amountBurned, 50);
     });
-
-    // it('#', async () => {
-        
-    // });
-    it('#issueByAuth should handle currentSupply for all owners', async () => {
-        const result = await reputation.issueByAuth(authAccount2, 100, {from: owner2});        
-        const balance = await reputation.balanceOf(owner2);
-        assert.equal(balance, 100);
-        const currentSupply = await reputation.currentSupply();
-        assert.equal(currentSupply, 200);
-    });
-
-    // it('#', async () => {
-        
-    // });
 
 });
