@@ -5,9 +5,9 @@ import "./IReputation.sol";
 
 contract Reputation is IReputation {
 
-    string public constant name = "ERC1329";
-    string public constant symbol = "REP";
-    uint256 public constant granularity = 1;
+    string public constant _name = "ERC1329";
+    string public constant _symbol = "REP";
+    uint256 public constant _granularity = 1;
 
     mapping(address => uint256) internal _balances;
     mapping(address => address) internal _authorized_addresses;
@@ -31,14 +31,14 @@ contract Reputation is IReputation {
     // ------------------------------------------------------------------------
     // Functions
     // ------------------------------------------------------------------------
-    function name() public returns (string) {
-        return name;
+    function name() public view returns (string) {
+        return _name;
     }
-    function symbol() public returns (string) {
-        return symbol;
+    function symbol() public view returns (string) {
+        return _symbol;
     }
-    function granularity() public returns (uint256) {
-        return granularity;
+    function granularity() public view returns (uint256) {
+        return _granularity;
     }
 
     /// Reputation may be limited or unlimited by the supply. These functions
@@ -60,13 +60,13 @@ contract Reputation is IReputation {
 
     /// Authorizes address to interact with the contract on behalf
     /// of the balance owner for a some duration (amount of blocks)
-    function authAddress(address owner) public view returns (address) {
-        return _authorized_addresses[owner];
+    function authAddress(address owner) public view returns (address, uint256) {
+        return (_authorized_addresses[owner], 0);
     }
 
     /// Authorizes address to interact with the contract on behalf
     /// of the balance owner for a some duration (amount of blocks)
-    function grantAddressAuth(address auth, uint duration) public returns (address prevAddress){
+    function grantAddressAuth(address auth, uint duration) public returns (address){
         require(tx.origin == msg.sender);
         require(auth != address(0));
         require(_owner_addresses[auth] == address(0));
@@ -96,7 +96,7 @@ contract Reputation is IReputation {
         }
     }
 
-    function revokeAddressAuth() public{
+    function revokeAddressAuth() public {
         require(tx.origin == msg.sender);
         require(_authorized_addresses[tx.origin] != address(0));
 
