@@ -19,4 +19,26 @@ contract ReputationIssuable is Reputation {
         }
     }
 
+    function  burnedByAuth(address auth, uint256 value) public {
+        require(_owner_addresses[auth] != address(0));
+
+        address owner = _owner_addresses[auth];
+        uint256 duration = _authorized_duration[auth];
+        if (duration >= block.number) {
+            uint256 balance = _balances[owner];
+            if (value > balance) {
+                _balances[owner] -= value;
+            } else {
+                // TODO: Banned
+                delete _balances[owner];
+                delete _authorized_addresses[owner];
+                delete _authorized_duration[auth];
+                delete _owner_addresses[auth];
+            }
+            emit Burned(owner, value);
+        } else {
+            emit AuthExpired(owner, auth);
+        }
+    }
+
 }
