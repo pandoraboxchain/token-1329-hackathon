@@ -8,6 +8,7 @@ contract('ReputationIssuable', accounts => {
     let authAccount3 = accounts[2]
     let owner1 = accounts[3];
     let owner2 = accounts[4];
+    let owner3 = accounts[5];
 
     before('setup', async () => {
         reputation = await ReputationIssuable.new();
@@ -24,6 +25,23 @@ contract('ReputationIssuable', accounts => {
         assert.equal(currentSupply, 100);
         assert.equal(issued.args.owner, owner1);
         assert.equal(issued.args.amountProduced, 100);
+    });
+
+    it('#burnedByAuth shoul decrement reputation', async () => {
+        await reputation.grantAddressAuth(authAccount3, 1000, {from: owner3});
+        await reputation.issueByAuth(authAccount3, 100, {from: owner3});
+
+        const currentSupplyBefore = await reputation.currentSupply();
+        const balanceBefore = await reputation.balanceOf(owner3);
+        const result = await reputation.burnedByAuth(authAccount3, 50, {from: owner3});
+        const burned = result.logs.filter(l => l.event === 'Burned')[0];
+        const balanceAfter = await reputation.balanceOf(owner3);
+        const currentSupplyAfter = await reputation.currentSupply();
+
+        assert.equal(balanceAfter-balanceBefore, -50);
+        assert.equal(currentSupplyAfter-currentSupplyBefore, -50);
+        assert.equal(burned.args.owner, owner3);
+        assert.equal(burned.args.amountBurned, 50);
     });
 
     // it('#', async () => {

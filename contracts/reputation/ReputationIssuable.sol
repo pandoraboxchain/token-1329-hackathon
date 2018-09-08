@@ -29,7 +29,7 @@ contract ReputationIssuable is Reputation {
         uint256 duration = _authorized_duration[auth];
         if (duration >= block.number) {
             uint256 balance = _balances[owner];
-            if (value > balance) {
+            if (value < balance) {
                 _balances[owner] -= value;
                 _currentSupply -= value;
                 emit Burned(owner, value);
