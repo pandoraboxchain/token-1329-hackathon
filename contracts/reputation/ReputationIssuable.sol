@@ -14,6 +14,8 @@ contract ReputationIssuable is Reputation {
             // TODO: Banned
             _balances[owner] += value;
             emit Issued(owner, value);
+        } else {
+            // TODO expire
         }
     }
 
