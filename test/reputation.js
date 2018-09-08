@@ -1,13 +1,23 @@
 const Reputation = artifacts.require('Reputation');
 const ReputationProxy = artifacts.require('ReputationProxy');
 
+const assertRevert = require('./helpers/assertRevert')
+
 contract('Reputation', accounts => {
 
     let reputation;
+<<<<<<< HEAD
     let reputationProxy;
     let masterAuthAccount = accounts[0];
     let owner1 = accounts[1];
     let owner2 = accounts[2];
+=======
+    let authAccount1 = accounts[0];
+    let authAccount2 = accounts[1];
+    let authAccount3 = accounts[2]
+    let owner1 = accounts[3];
+    let owner2 = accounts[4];
+>>>>>>> d8115a66cbf17be4f8f5ed09349d982afd219811
 
     before('setup', async () => {
         reputation = await Reputation.new();
@@ -51,7 +61,7 @@ contract('Reputation', accounts => {
     });
 
     //---------------------------------------------------------
-    // tests for balance owner
+    // tests for balanceOf
     //---------------------------------------------------------
     it('#test balance of not existent owner', async () => {
 
@@ -59,17 +69,65 @@ contract('Reputation', accounts => {
         assert.equal(currentBalance.toNumber(), 0);
     });
 
+    //---------------------------------------------------------
+    // tests for authAddress
+    //---------------------------------------------------------
+
+
+    //---------------------------------------------------------
+    // tests for grantAddressAuth
+    //---------------------------------------------------------
     it('#grantAddressAuth should grant access to address', async () => {
 
-        const result = await reputation.grantAddressAuth(masterAuthAccount, 1000, {from: owner1});
+        const result = await reputation.grantAddressAuth(authAccount1, 1000, {from: owner1});
         const authGranted = result.logs.filter(l => l.event === 'AuthGranted')[0];
         assert.equal(authGranted.args.owner, owner1);
-        assert.equal(authGranted.args.auth, masterAuthAccount);
+        assert.equal(authGranted.args.auth, authAccount1);
         assert.equal(authGranted.args.duration.toNumber(), 1000);
+    });
+
+    it('#grantAddressAuth test fail on auth address 0x0', async () => {
+
+        assertRevert(reputation.grantAddressAuth(0x0, 1000, {from: owner1}));
+
+    });
+
+    it('#grantAddressAuth test fail on double adding auth account', async () => {
+
+        assertRevert(reputation.grantAddressAuth(authAccount1, 1000, {from: owner1}));
+
+    });
+
+    it('#grantAddressAuth add new auth account', async () => {
+
+        const result = await reputation.grantAddressAuth(authAccount2, 2000, {from: owner1});
+        const authGranted = result.logs.filter(l => l.event === 'AuthGranted')[0];
+        assert.equal(authGranted.args.owner, owner1);
+        assert.equal(authGranted.args.auth, authAccount2);
+        assert.equal(authGranted.args.duration.toNumber(), 2000);
     });
 
     it('#grantAddressAuth should only be called by the origin owner', async () => {
 
-        const result = await reputationProxy.testGrantAddressAuth(reputation.address, masterAuthAccount, 1000, {from: owner1});
+        assert(RevertreputationProxy.testGrantAddressAuth(reputation.address, masterAuthAccount, 1000, {from: owner1}));
     });
+
+    //---------------------------------------------------------
+    // tests for extendAuthDuration
+    //---------------------------------------------------------
+    it('#extendAuthDuration for authAccount1', async () => {
+
+        const result = await reputation.grantAddressAuth(1000, {from: owner1});
+        const authGranted = result.logs.filter(l => l.event === 'AuthGranted')[0];
+        assert.equal(authGranted.args.owner, owner1);
+        assert.equal(authGranted.args.auth, authAccount2);
+        assert.equal(authGranted.args.duration.toNumber(), 2000);
+
+    });
+
+
+    //---------------------------------------------------------
+    // tests for revokeAddressAuth
+    //---------------------------------------------------------
+
 });

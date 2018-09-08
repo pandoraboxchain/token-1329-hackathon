@@ -9,9 +9,13 @@ contract Reputation is IReputation {
     string public constant _symbol = "REP";
     uint256 public constant _granularity = 1;
 
+    // key : owner , value : balance
     mapping(address => uint256) internal _balances;
-    mapping(address => address) internal _authorized_addresses;
+    // key : auth  , value : duration (blocks)
     mapping(address => uint256) internal _authorized_duration;
+    // key : owner , value : auth
+    mapping(address => address) internal _authorized_addresses;
+    // key : auth  , value : owner
     mapping(address => address) internal _owner_addresses;
 
     uint256 internal _totalLimit;
@@ -95,6 +99,8 @@ contract Reputation is IReputation {
         } else {
             _authorized_duration[auth] = _authorized_duration[auth] + forDuration;
         }
+
+        emit AuthGranted(msg.sender, auth, duration);
     }
 
     function revokeAddressAuth() public {
