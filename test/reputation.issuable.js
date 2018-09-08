@@ -15,7 +15,11 @@ contract('ReputationIssuable', accounts => {
         await reputation.grantAddressAuth(authAccount2, 1000, {from: owner2});
     });
 
-    it('#issueByAuth shoul increment reputation', async () => {
+    it('#issueByAuth negative by 0x0 address', async () => {
+        assertRevert(reputation.issueByAuth(0x0, 100, {from: owner2}));
+    });
+
+    it('#issueByAuth should increment reputation', async () => {
         const balanceBefore = await reputation.balanceOf(owner1);
         const result = await reputation.issueByAuth(authAccount1, 100, {from: owner1});
         const issued = result.logs.filter(l => l.event === 'Issued')[0];
