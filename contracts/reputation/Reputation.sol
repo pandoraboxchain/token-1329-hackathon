@@ -102,7 +102,7 @@ contract Reputation is IReputation {
             _authorized_duration[auth] = _authorized_duration[auth] + forDuration;
         }
 
-        emit AuthGranted(msg.sender, auth, duration);
+        emit AuthGranted(tx.origin, auth, forDuration);
     }
 
     function revokeAddressAuth() public {
