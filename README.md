@@ -24,7 +24,7 @@ Quote from EIP:
 ## Testnet links
 
 - [Reputation Issuable abi](./abi/ReputationIssuable.json)
-- *Link to [Reputation Issuable contract](https://rinkeby.etherscan.io/address/0x75d2a768a00cf07abd2f0994e0318db9ed8dc48a)*
+- *Link to [Reputation Issuable contract](https://rinkeby.etherscan.io/address/0xd0720411bae294a40f4269a9e10276002be8a5ba)*
 - Reputation contract owner private key (for experiments) `01599e03965ff7ed293252a471942a68e1ecfb74040f931e20d8984fe56fce1c`
 
 ## Instalation
