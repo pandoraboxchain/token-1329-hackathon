@@ -19,9 +19,7 @@ Quote from EIP:
 - [Reputation](test/reputation.js)
 - [ReputationIssuable](test/reputation.issuable.js)
 
----
-
-- [Coverage](coverage.md)
+#### Coverage - [95%](coverage.md) 
 
 ## Testnet links
 
