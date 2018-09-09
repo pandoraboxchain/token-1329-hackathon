@@ -25,6 +25,7 @@ Quote from EIP:
 
 - [Reputation Issuable abi](./abi/ReputationIssuable.json)
 - *Link to [Reputation Issuable contract](https://rinkeby.etherscan.io/address/0x75d2a768a00cf07abd2f0994e0318db9ed8dc48a)*
+- Reputation contract owner private key (for experiments) `01599e03965ff7ed293252a471942a68e1ecfb74040f931e20d8984fe56fce1c`
 
 ## Instalation
 
