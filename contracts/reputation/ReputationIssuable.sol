@@ -28,8 +28,10 @@ contract ReputationIssuable is Reputation, Ownable {
 
         address owner = _owner_addresses[auth];
         uint256 duration = _authorized_duration[auth];
+        
         if (duration >= block.number) {
             uint256 balance = _balances[owner];
+            
             if (value < balance) {
                 _balances[owner] = _balances[owner].sub(value);
                 _currentSupply = _currentSupply.sub(value);

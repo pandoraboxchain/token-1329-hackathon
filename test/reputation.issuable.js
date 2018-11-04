@@ -8,15 +8,19 @@ contract('ReputationIssuable', accounts => {
     let authAccount2 = accounts[2];
     let authAccount3 = accounts[3];
     let authAccount4 = accounts[4];
+    let authAccount5 = accounts[5];
+    let authAccount6 = accounts[6];
     let owner1 = accounts[5];
     let owner2 = accounts[6];
     let owner3 = accounts[7];
     let owner4 = accounts[8];
+    let owner5 = accounts[9];
     
     before('setup', async () => {
         reputation = await ReputationIssuable.new();
         await reputation.grantAddressAuth(authAccount1, 1000, {from: owner1});
         await reputation.grantAddressAuth(authAccount2, 1000, {from: owner2});
+        await reputation.grantAddressAuth(authAccount5, 0, {from: owner5});
     });
 
     it('#issueByAuth should increment reputation', async () => {
@@ -37,6 +41,13 @@ contract('ReputationIssuable', accounts => {
         assert.equal(balance, 100);
         const currentSupply = await reputation.currentSupply();
         assert.equal(currentSupply, 200);
+    });
+
+    it('#issueByAuth should fire AuthExpired in case of duration >= block.number', async () => {
+        const result = await reputation.issueByAuth(authAccount5, 100, {from: reputationOwner});        
+        const authExpired = result.logs.filter(l => l.event === 'AuthExpired')[0];
+        assert.equal(authExpired.args.owner, owner5);
+        assert.equal(authExpired.args.auth, authAccount5);
     });
 
     it('#issueByAuth negative by 0x0 address', async () => {
@@ -78,8 +89,14 @@ contract('ReputationIssuable', accounts => {
         assert.equal(balanceAfter-balanceBefore, -50);
         assert.equal(currentSupplyAfter-currentSupplyBefore, -50);
         assert.equal(burned.args.owner, owner4);
-        assert.equal(burned.args.amountBurned, 50);
+        assert.equal(burned.args.amountBurned, 50);        
+    });
 
+    it('#burnedByAuth should fire AuthExpired in case of duration >= block.number', async () => {
+        const result = await reputation.burnedByAuth(authAccount5, 100, {from: reputationOwner});
+        const authExpired = result.logs.filter(l => l.event === 'AuthExpired')[0];
+        assert.equal(authExpired.args.owner, owner5);
+        assert.equal(authExpired.args.auth, authAccount5);
     });
 
 

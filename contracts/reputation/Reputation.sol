@@ -101,7 +101,8 @@ contract Reputation is IReputation {
         address auth = _authorized_addresses[tx.origin];
 
         uint256 old_duration = _authorized_duration[auth];
-        if(old_duration<block.number){
+
+        if (old_duration < block.number){
             _authorized_duration[auth] = block.number.add(forDuration);
         } else {
             _authorized_duration[auth] = _authorized_duration[auth].add(forDuration);

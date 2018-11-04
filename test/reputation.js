@@ -6,15 +6,19 @@ const assertRevert = require('./helpers/assertRevert')
 contract('Reputation', accounts => {
 
     let reputation;
+    let reputation1;
     let reputationProxy;
     let authAccount1 = accounts[0];
     let authAccount2 = accounts[1];
     let authAccount3 = accounts[2]
     let owner1 = accounts[3];
     let owner2 = accounts[4];
+    let owner3 = accounts[5];
+    let owner4 = accounts[6];
 
     before('setup', async () => {
         reputation = await Reputation.new();
+        reputation1 = await Reputation.new();
         reputationProxy = await ReputationProxy.new();
     });
 
@@ -126,14 +130,34 @@ contract('Reputation', accounts => {
     //---------------------------------------------------------
     // tests for extendAuthDuration
     //---------------------------------------------------------
-    it('#extendAuthDuration for account', async () => {
+    it('#extendAuthDuration should extend auth duration in case of blockNumber > prevoiusly granted duration', async () => {
 
         const result = await reputation.extendAuthDuration(1000, {from: owner1});
         const authGranted = result.logs.filter(l => l.event === 'AuthGranted')[0];
         assert.equal(authGranted.args.owner, owner1);
         assert.equal(authGranted.args.auth, authAccount2);
         assert.equal(authGranted.args.duration.toNumber(), 1000);
+    });
 
+    it('#extendAuthDuration should extend auth duration in case of blockNumber < prevoiusly granted duration', async () => {
+
+        const result = await reputation1.grantAddressAuth(authAccount3, 0, {from: owner3});
+        const authGranted = result.logs.filter(l => l.event === 'AuthGranted')[0];
+        assert.equal(authGranted.args.duration.toNumber(), 0);
+
+        const result1 = await reputation1.extendAuthDuration(1000, {from: owner3});
+        const authGranted1 = result1.logs.filter(l => l.event === 'AuthGranted')[0];
+        assert.equal(authGranted1.args.duration.toNumber(), 1000);
+    });
+
+    it('#extendAuthDuration should fail in case of wrong owner', async () => {
+
+        assertRevert(reputation.extendAuthDuration(1000, {from: owner3}));
+    });
+
+    it('#extendAuthDuration should be called directly', async () => {
+
+        assertRevert(reputationProxy.testExtendAuthDuration(reputation.address, 1000, {from: owner1}));
     });
 
 
@@ -145,10 +169,16 @@ contract('Reputation', accounts => {
         assertRevert(reputationProxy.testRevokeAddressAuth(reputation.address, {from: owner1}));
     });
 
+    it('#revokeAddressAuth should fail in case of wrong owner', async () => {
+
+        assertRevert(reputation.revokeAddressAuth({from: owner3}));
+    });
+
     it('#revokeAddressAuth should revoke origin address', async () => {
 
         const result = await reputation.revokeAddressAuth({from: owner1});
         const authRevoked = result.logs.filter(l => l.event === 'AuthRevoked')[0];
         assert.equal(authRevoked.args.owner, owner1);
     });
+    
 });
