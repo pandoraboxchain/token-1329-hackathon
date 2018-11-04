@@ -27,6 +27,10 @@ Quote from EIP:
 - *Link to [Reputation Issuable contract](https://rinkeby.etherscan.io/address/0xd0720411bae294a40f4269a9e10276002be8a5ba)*
 - Reputation contract owner private key (for experiments) `01599e03965ff7ed293252a471942a68e1ecfb74040f931e20d8984fe56fce1c`
 
+## Presentation
+
+Link to [presentation](pdf/token1329hackathon.pdf)
+
 ## Instalation
 
 ### Requirements
